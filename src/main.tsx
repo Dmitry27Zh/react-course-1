@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import UserCard from './components/UserCard'
+import Counter from './components/Counter'
 
 ReactDom.render(
   <div className="some">
@@ -9,6 +10,7 @@ ReactDom.render(
     <UserCard name="Dmitry" text="Hi there!" />
     <hr />
     <div>Text</div>
+    <Counter />
   </div>,
   document.querySelector('.app') as HTMLElement
 )
