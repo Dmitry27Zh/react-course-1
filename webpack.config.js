@@ -36,6 +36,9 @@ let conf = {
       filename: 'main.css',
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
 }
 
 module.exports = (env, options) => {
