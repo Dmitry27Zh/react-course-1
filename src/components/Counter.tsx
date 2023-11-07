@@ -1,12 +1,18 @@
 import React from 'react'
 
-export default class extends React.Component {
+type Props = {
+  max: number
+}
+
+export default class extends React.Component<Props> {
   state = {
     current: 1,
   }
 
   increment = () => {
-    this.setState({ current: this.state.current + 1 })
+    if (this.state.current < this.props.max) {
+      this.setState({ current: this.state.current + 1 })
+    }
   }
 
   render(): JSX.Element {
