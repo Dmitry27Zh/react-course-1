@@ -1,25 +1,35 @@
 import UserCard from './UserCard'
 import Counter from './Counter'
 import { useState } from 'react'
+import { PRODUCTS } from './constants'
 
 export default function (): JSX.Element {
-  const [maxItems, setMaxItems] = useState(2)
-  const handleSetMaxItemsClick = () => setMaxItems(5)
+  const [products, setProducts] = useState(PRODUCTS)
 
   return (
     <div className="some">
-      <h2>Hello, World!</h2>
-      <hr />
-      <UserCard name="Dmitry" text="Hi there!" />
-      <hr />
-      <div>Text</div>
-      <h3>Class max=3</h3>
-      <hr />
-      <h3>Function min=1 max=2</h3>
-      <Counter max={maxItems} key={`1: ${maxItems}`} />
-      <button type="button" onClick={handleSetMaxItemsClick}>
-        Set max items 5
-      </button>
+      <h1>Products list</h1>
+      {products.length}
+      <table>
+        <tbody>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Cnt</th>
+            <th>Total</th>
+          </tr>
+          {products.map((product, index) => {
+            return (
+              <tr key={product.id}>
+                <td>{index + 1}</td>
+                <td>{product.title}</td>
+                <td>{product.price}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   )
 }
