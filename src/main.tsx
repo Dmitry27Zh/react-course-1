@@ -12,8 +12,8 @@ ReactDom.render(
     <div>Text</div>
     <h3>Class max=3</h3>
     <hr />
-    <h3>Function min=0 max=2</h3>
-    <Counter min={0} max={2} />
+    <h3>Function min=1 max=2</h3>
+    <Counter max={2} />
   </div>,
   document.querySelector('.app') as HTMLElement
 )

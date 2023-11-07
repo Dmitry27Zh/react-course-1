@@ -14,3 +14,5 @@ export const debounce = (cb: Function, ms: number) => {
     }, ms)
   }
 }
+
+export const clamp = (min: number, max: number, number: number) => Math.max(min, Math.min(number, max))

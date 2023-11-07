@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useEffect, useState, useCallback, useMemo } from 'react'
-import { debounce } from './utils'
+import React, { ChangeEvent, useEffect, useState, useMemo } from 'react'
+import { debounce, clamp } from './utils'
 import { COUNTER_TIMEOUT } from './constants'
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   max: number
 }
 
-export default function ({ min = 0, max }: Props): JSX.Element | never {
+export default function ({ min = 1, max }: Props): JSX.Element | never {
   if (min > max) {
     throw new Error('Min should be less than max')
   }
@@ -18,12 +18,12 @@ export default function ({ min = 0, max }: Props): JSX.Element | never {
     setInput(String(current))
   }, [current])
   const applyCurrent = (value: number) => {
-    if (value >= min && value <= max) {
-      setCurrent(value)
-      return true
-    }
+    setCurrent((oldCurrent) => {
+      const newCurrent = Number.isFinite(value) ? clamp(min, max, value) : oldCurrent
+      setInput(String(newCurrent))
 
-    return false
+      return newCurrent
+    })
   }
   const decrement = () => {
     applyCurrent(current - 1)
@@ -31,27 +31,20 @@ export default function ({ min = 0, max }: Props): JSX.Element | never {
   const increment = () => {
     applyCurrent(current + 1)
   }
-  const updateCurrent = useMemo<(input: string, current: number) => void>(() => {
-    return debounce((input: string, current: number) => {
-      let isApplied = false
-
-      if (input) {
-        isApplied = applyCurrent(Number(input))
-      }
-
-      if (!isApplied) {
-        setInput(String(current))
-      }
+  const updateCurrent = useMemo<(input: string) => void>(() => {
+    return debounce((input: string) => {
+      applyCurrent(Number(input))
     }, COUNTER_TIMEOUT)
   }, [])
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value } = target
     setInput(value)
-    updateCurrent(value, current)
+    updateCurrent(value)
   }
 
   return (
     <div>
+      {current}
       <button type="button" onClick={decrement}>
         -
       </button>
