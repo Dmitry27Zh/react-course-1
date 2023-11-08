@@ -1,28 +1,28 @@
-import React, { ChangeEvent, useEffect, useState, useMemo } from 'react'
+import React, { ChangeEvent, useState, useMemo } from 'react'
 import { debounce, clamp } from './utils'
 import { COUNTER_TIMEOUT } from './constants'
+import { GetProductChange } from './types'
 
 type Props = {
   min?: number
   max: number
+  current: number
+  onChange: (getProductChange: GetProductChange) => void
 }
 
-export default function ({ min = 1, max }: Props): JSX.Element | never {
+export default function ({ min = 0, max, current, onChange }: Props): JSX.Element | never {
   if (min > max) {
     throw new Error('Min should be less than max')
   }
 
-  const [current, setCurrent] = useState<number>(min)
-  const [input, setInput] = useState<string>(String(min))
-  useEffect(() => {
-    setInput(String(current))
-  }, [current])
+  const [input, setInput] = useState<string>(String(current))
   const applyCurrent = (value: number) => {
-    setCurrent((oldCurrent) => {
+    onChange((oldProduct) => {
+      const oldCurrent = oldProduct.current
       const newCurrent = Number.isFinite(value) ? clamp(min, max, value) : oldCurrent
       setInput(String(newCurrent))
 
-      return newCurrent
+      return { current: newCurrent }
     })
   }
   const decrement = () => {
@@ -33,7 +33,7 @@ export default function ({ min = 1, max }: Props): JSX.Element | never {
   }
   const updateCurrent = useMemo<(input: string) => void>(() => {
     return debounce((input: string) => {
-      applyCurrent(Number(input))
+      applyCurrent(Number(input || 'incorrect'))
     }, COUNTER_TIMEOUT)
   }, [])
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {

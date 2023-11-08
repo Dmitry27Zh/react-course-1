@@ -1,6 +1,5 @@
 export const debounce = (cb: Function, ms: number) => {
   let timerId: number | null = null
-  console.log('debounce ska')
 
   return function () {
     if (timerId) {
