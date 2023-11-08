@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useMemo } from 'react'
+import React, { ChangeEvent, useMemo, useRef } from 'react'
 import { debounce, clamp } from './utils'
 import { COUNTER_TIMEOUT } from './constants'
 import { GetProductChange } from './types'
@@ -15,12 +15,12 @@ export default function ({ min = 0, max, current, onChange }: Props): JSX.Elemen
     throw new Error('Min should be less than max')
   }
 
-  const [input, setInput] = useState<string>(String(current))
+  const inputRef = useRef<HTMLInputElement>(null)
   const applyCurrent = (value: number) => {
     onChange((oldProduct) => {
       const oldCurrent = oldProduct.current
       const newCurrent = Number.isFinite(value) ? clamp(min, max, value) : oldCurrent
-      setInput(String(newCurrent))
+      inputRef.current!.value = String(newCurrent)
 
       return { current: newCurrent }
     })
@@ -38,7 +38,6 @@ export default function ({ min = 0, max, current, onChange }: Props): JSX.Elemen
   }, [])
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value } = target
-    setInput(value)
     updateCurrent(value)
   }
 
@@ -48,7 +47,7 @@ export default function ({ min = 0, max, current, onChange }: Props): JSX.Elemen
       <button type="button" onClick={decrement}>
         -
       </button>
-      <input type="text" value={input} onChange={handleChange} />
+      <input ref={inputRef} type="text" defaultValue={current} onChange={handleChange} />
       <button type="button" onClick={increment}>
         +
       </button>
