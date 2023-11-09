@@ -1,7 +1,7 @@
 import Counter from './Counter'
 import { useState } from 'react'
 import { PRODUCTS } from './constants'
-import { GetProductChange, Product } from './types'
+import { GetProductChange } from './types'
 
 export default function (): JSX.Element {
   const [products, setProducts] = useState(PRODUCTS)
@@ -46,6 +46,7 @@ export default function (): JSX.Element {
                     onChange={(getProductChange: GetProductChange) => handleProductChange(product.id, getProductChange)}
                   />
                 </td>
+                <td>{product.current * product.price}</td>
               </tr>
             )
           })}
