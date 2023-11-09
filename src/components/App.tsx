@@ -19,6 +19,7 @@ export default function (): JSX.Element {
       return newProducts
     })
   }
+  const total = products.reduce((result, product) => result + product.current * product.price, 0)
 
   return (
     <div className="some">
@@ -52,6 +53,7 @@ export default function (): JSX.Element {
           })}
         </tbody>
       </table>
+      <strong>Total: ${total}</strong>
     </div>
   )
 }
