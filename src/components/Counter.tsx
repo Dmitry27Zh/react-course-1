@@ -44,11 +44,11 @@ export default function ({ min = 0, max, current, onChange }: Props): JSX.Elemen
   return (
     <div>
       {current}
-      <button type="button" onClick={decrement}>
+      <button className="btn btn-danger" type="button" onClick={decrement}>
         -
       </button>
       <input ref={inputRef} type="text" defaultValue={current} onChange={handleChange} />
-      <button type="button" onClick={increment}>
+      <button className="btn btn-success" type="button" onClick={increment}>
         +
       </button>
     </div>
