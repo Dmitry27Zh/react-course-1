@@ -19,6 +19,11 @@ export default function (): JSX.Element {
       return newProducts
     })
   }
+  const removeProduct = (id: number) => {
+    setProducts((oldProducts) => {
+      return oldProducts.filter((product) => product.id !== id)
+    })
+  }
   const total = products.reduce((result, product) => result + product.current * product.price, 0)
 
   return (
@@ -33,6 +38,7 @@ export default function (): JSX.Element {
             <th>Price</th>
             <th>Current</th>
             <th>Total</th>
+            <th>Action</th>
           </tr>
           {products.map((product, index) => {
             return (
@@ -48,6 +54,11 @@ export default function (): JSX.Element {
                   />
                 </td>
                 <td>{product.current * product.price}</td>
+                <td>
+                  <button type="button" onClick={() => removeProduct(product.id)}>
+                    X
+                  </button>
+                </td>
               </tr>
             )
           })}
