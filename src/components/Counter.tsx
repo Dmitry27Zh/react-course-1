@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useMemo, useRef } from 'react'
-import { debounce, clamp } from './utils'
+import { debounce, clamp } from '../utils'
 import { COUNTER_TIMEOUT } from './constants'
-import { GetProductChange } from './types'
+import { GetProductChange } from '../types'
 
 type Props = {
   min?: number

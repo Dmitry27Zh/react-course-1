@@ -1,7 +1,7 @@
 import Counter from './Counter'
 import { useState } from 'react'
 import { PRODUCTS } from './constants'
-import { GetProductChange } from './types'
+import { GetProductChange } from '../types'
 
 export default function (): JSX.Element {
   const [products, setProducts] = useState(PRODUCTS)

@@ -1,4 +1,4 @@
-import { Products } from './types'
+import { Products } from '../types'
 
 export const COUNTER_TIMEOUT = 2000
 
