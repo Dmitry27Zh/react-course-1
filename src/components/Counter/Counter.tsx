@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useMemo, useRef } from 'react'
 import { debounce, clamp } from '../../utils'
 import { COUNTER_TIMEOUT } from '../constants'
-import './styles.css'
+import styles from './styles.module.css'
 import { Props } from './props'
 
 export default function ({ min = 0, max, current, onChange }: Props): JSX.Element | never {
@@ -41,7 +41,7 @@ export default function ({ min = 0, max, current, onChange }: Props): JSX.Elemen
       <button className="btn btn-danger" type="button" onClick={decrement}>
         -
       </button>
-      <input className="input" ref={inputRef} type="text" defaultValue={current} onChange={handleChange} />
+      <input className={styles.input} ref={inputRef} type="text" defaultValue={current} onChange={handleChange} />
       <button className="btn btn-success" type="button" onClick={increment}>
         +
       </button>
