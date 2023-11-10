@@ -5,11 +5,11 @@ export default function () {
   const [isActive, setIsActive] = useState(false)
   const elementRef = useRef<HTMLDivElement>(null)
   const closeModal = () => setIsActive(false)
-  const foo = () => {
-    console.log(elementRef.current?.offsetWidth)
-    closeModal()
-  }
-  useClickOutside(elementRef, foo)
+  useClickOutside(elementRef, () => {
+    if (isActive) {
+      closeModal()
+    }
+  })
 
   return (
     <>
