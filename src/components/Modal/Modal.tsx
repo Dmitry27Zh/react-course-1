@@ -1,14 +1,21 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import useClickOutside from '../../hooks/useClickOutside'
 
 export default function () {
   const [isActive, setIsActive] = useState(false)
+  const elementRef = useRef<HTMLDivElement>(null)
   const closeModal = () => setIsActive(false)
+  const foo = () => {
+    console.log(elementRef.current?.offsetWidth)
+    closeModal()
+  }
+  useClickOutside(elementRef, foo)
 
   return (
     <>
       <div className="modal" style={{ display: isActive ? 'block' : 'none' }} tabIndex={-1} role="dialog">
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
+          <div ref={elementRef} className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Modal title</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={closeModal}>
