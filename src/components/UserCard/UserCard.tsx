@@ -1,9 +1,8 @@
 import useWindowSize from '../../hooks/useWindowSize'
+import Modal from '../Modal/Modal'
 
 export default function (props: { name: string; text: string }) {
   const { window, height } = useWindowSize()
-  console.log(window)
-  console.log(height)
   const paddingSize = Math.min(5, Math.round(window / 200))
   const className = `card p-${paddingSize}`
 
@@ -15,6 +14,7 @@ export default function (props: { name: string; text: string }) {
         <div>{props.text}</div>
       </div>
       <hr />
+      <Modal />
     </>
   )
 }
