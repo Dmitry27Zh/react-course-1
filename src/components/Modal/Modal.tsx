@@ -1,13 +1,12 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import useClickOutside from '../../hooks/useClickOutside'
+import { Props } from './props'
 
-export default function () {
-  const [isActive, setIsActive] = useState(false)
+export default function ({ isActive, onClose, onOpen, onConfirm, title, body }: Props) {
   const elementRef = useRef<HTMLDivElement>(null)
-  const closeModal = () => setIsActive(false)
   useClickOutside(elementRef, () => {
     if (isActive) {
-      closeModal()
+      onClose()
     }
   })
 
@@ -17,28 +16,30 @@ export default function () {
         <div className="modal-dialog" role="document">
           <div ref={elementRef} className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Modal title</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={closeModal}>
+              <h5 className="modal-title">{title}</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={onClose}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
-              <p>Modal body text goes here.</p>
+              <p>{body}</p>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary">
-                Save changes
+              <button type="button" className="btn btn-primary" onClick={onConfirm}>
+                Ok
               </button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={closeModal}>
+              <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={onClose}>
                 Close
               </button>
             </div>
           </div>
         </div>
       </div>
-      <button type="button" onClick={() => setIsActive(true)}>
-        Open modal
-      </button>
+      {onOpen && (
+        <button type="button" onClick={onOpen}>
+          Open modal
+        </button>
+      )}
     </>
   )
 }

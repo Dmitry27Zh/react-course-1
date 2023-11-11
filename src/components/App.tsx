@@ -4,7 +4,6 @@ import Cart from './Cart'
 import Order from './Order'
 import Result from './Result'
 import SettingsContext from '../contexts/settings'
-import Products from './Products/Products'
 
 export default function (): JSX.Element {
   const [page, setPage] = useState('cart')
@@ -19,8 +18,6 @@ export default function (): JSX.Element {
         {page === 'cart' && <Cart onNext={moveToOrder} />}
         {page === 'order' && <Order onNext={moveToResult} onPrev={moveToCart} />}
         {page === 'result' && <Result />}
-        <UserCard name="user" text="hello" />
-        <Products />
       </div>
     </SettingsContext.Provider>
   )
