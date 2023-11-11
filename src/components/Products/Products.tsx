@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Counter from '../Counter'
 import { GetProductChange } from '../../types'
 import { PRODUCTS } from '../constants'
+import SettingsContext from '../../contexts/settings'
 
 export default function () {
   const [products, setProducts] = useState(PRODUCTS)
+  const settings = useContext(SettingsContext)
+
   const handleProductChange = (id: number, getProductChange: GetProductChange) => {
     setProducts((oldProducts) => {
       const newProducts = oldProducts.map((product) => {
