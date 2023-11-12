@@ -19,7 +19,9 @@ export type InputType = 'text' | 'email' | 'tel' | 'password'
 export type Input = {
   label: string
   name: string
+  value: string
   type?: InputType
+  validation: (value: string) => boolean
 }
 
-export type Inputs = Input[]
+export type Inputs = readonly Input[]
