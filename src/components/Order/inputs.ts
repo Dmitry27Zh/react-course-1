@@ -1,5 +1,5 @@
-import { Inputs, makeMap } from '../../types'
-import { InputData } from './types'
+import { Inputs } from '../../types'
+import { makeMap } from '../../utils'
 
 export const inputs = [
   {
@@ -25,7 +25,4 @@ export const inputs = [
   },
 ] as const satisfies Inputs
 
-export const defaultInputData = inputs.reduce(
-  (result, input) => ({ ...result, [input.name]: input.value }),
-  {} as InputData
-)
+export const defaultInputData = makeMap(inputs, 'name', 'value')

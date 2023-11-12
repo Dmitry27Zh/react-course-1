@@ -25,3 +25,5 @@ export type Input = {
 }
 
 export type Inputs = readonly Input[]
+
+export type ValidObjKeys = string | number | symbol

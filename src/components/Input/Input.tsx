@@ -13,6 +13,7 @@ export default function ({ name, label, type = 'text', value, onChange }: Props)
         id={name}
         value={value}
         onChange={({ target }) => onChange(target.value)}
+        autoComplete="off"
       />
     </div>
   )
