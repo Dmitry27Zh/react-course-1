@@ -20,8 +20,13 @@ export type Input = {
   label: string
   name: string
   value: string
+  validation: {
+    [key: string]: {
+      action: (value: string) => boolean
+      message: string
+    }
+  }
   type?: InputType
-  validation: (value: string) => boolean
 }
 
 export type Inputs = readonly Input[]

@@ -7,21 +7,36 @@ export const inputs = [
     name: 'name',
     type: 'text',
     value: '',
-    validation: (value) => value !== '',
+    validation: {
+      required: {
+        action: (value) => value !== '',
+        message: 'Name is required',
+      },
+    },
   },
   {
     label: 'Email',
     name: 'email',
     type: 'email',
     value: '',
-    validation: (value) => /([a-z0-9]+.?)+[a-z0-9]+@([a-z0-9]+.?)[a-z0-9]+\.[a-z]+/gi.test(value),
+    validation: {
+      correct: {
+        action: (value) => /([a-z0-9]+.?)+[a-z0-9]+@([a-z0-9]+.?)[a-z0-9]+\.[a-z]+/gi.test(value),
+        message: "Name isn't correct",
+      },
+    },
   },
   {
     label: 'Tel',
     name: 'tel',
     type: 'tel',
     value: '',
-    validation: (value) => !!value,
+    validation: {
+      required: {
+        action: (value) => value !== '',
+        message: 'Tel is required',
+      },
+    },
   },
 ] as const satisfies Inputs
 
