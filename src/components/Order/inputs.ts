@@ -1,5 +1,6 @@
 import { Inputs } from '../../types'
 import { makeMap } from '../../utils'
+import { ValidationData, ValidationParams } from './types'
 
 export const inputs = [
   {
@@ -41,3 +42,7 @@ export const inputs = [
 ] as const satisfies Inputs
 
 export const defaultInputData = makeMap(inputs, 'name', 'value')
+
+export const defaultValidationData = Object.fromEntries<ValidationParams>(
+  inputs.map((input) => [input.name, { status: '', error: '' }])
+) as ValidationData
