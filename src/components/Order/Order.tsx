@@ -20,6 +20,8 @@ export default function ({ onNext, onPrev }: Props) {
             key={`${index}-${input.name}`}
             {...input}
             value={data[input.name]}
+            error="error"
+            validationStatus="invalid"
             onChange={(value) => handleChange(input.name, value)}
           />
         ))}
