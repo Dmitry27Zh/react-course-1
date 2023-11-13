@@ -25,3 +25,5 @@ export const PRODUCTS: Products = [
     current: 0,
   },
 ]
+
+export const VALID_OBJ_KEYS = ['string', 'number', 'symbol'] as const
