@@ -1,5 +1,5 @@
 import { VALID_OBJ_KEYS } from '../components/constants'
-import { ValidObjKeys } from '../types'
+import { Input, ValidObjKeys } from '../types'
 
 export const debounce = (cb: Function, ms: number) => {
   let timerId: number | null = null
@@ -40,4 +40,17 @@ export const makeMap = <O extends object, T extends keyof O, U extends keyof O>(
   })
 
   return result
+}
+
+export const validate = (validation: Input['validation'], value: string): string => {
+  for (let name in validation) {
+    const { action, message } = validation[name]
+    const isValid = action(value)
+
+    if (!isValid) {
+      return message
+    }
+  }
+
+  return ''
 }

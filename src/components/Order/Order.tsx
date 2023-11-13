@@ -1,24 +1,35 @@
 import { FormEvent, useState } from 'react'
 import { Input as InputType, InputData, ValidationData, ValidationParams } from './types'
 import { Props } from './props'
-import { defaultInputData, defaultValidationData, inputs } from './inputs'
+import { defaultInputData, defaultValidationData, inputValidationMap, inputs } from './inputs'
 import Input from '../Input'
+import { validate } from '../../utils'
 
 export default function ({ onNext, onPrev }: Props) {
   const [data, setData] = useState<InputData>(defaultInputData)
   const [validationData, setValidationData] = useState<ValidationData>(defaultValidationData)
+  const validateData = (data: Partial<InputData>) => {
+    let newValidationData = {}
+    Object.entries(data).forEach(([name, value]) => {
+      const error = validate(inputValidationMap[name as InputType['name']], value)
+      const validationParams: ValidationParams = {
+        status: error ? 'invalid' : 'valid',
+        error,
+      }
+      newValidationData = { ...newValidationData, [name]: validationParams }
+    })
+
+    setValidationData((prevState) => {
+      return { ...prevState, ...newValidationData }
+    })
+  }
   const handleChange = (name: InputType['name'], value: string) => {
     setData((prevState) => ({ ...prevState, [name]: value }))
-    const validationParams: ValidationParams = {
-      status: 'invalid',
-      error: validationData[name].error + '1',
-    }
-    setValidationData((prevState) => {
-      return { ...prevState, [name]: validationParams }
-    })
+    validateData({ [name]: value })
   }
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
+    validateData(data)
   }
 
   return (
@@ -36,15 +47,15 @@ export default function ({ onNext, onPrev }: Props) {
             onChange={(value) => handleChange(input.name, value)}
           />
         ))}
+        <div className="d-flex gap-2">
+          <button className="btn btn-secondary" type="button" onClick={onPrev}>
+            Move to cart
+          </button>
+          <button className="btn btn-primary" type="submit">
+            Move to result
+          </button>
+        </div>
       </form>
-      <div className="d-flex gap-2">
-        <button className="btn btn-secondary" type="button" onClick={onPrev}>
-          Move to cart
-        </button>
-        <button className="btn btn-primary" type="button" onClick={onNext}>
-          Move to result
-        </button>
-      </div>
     </div>
   )
 }
