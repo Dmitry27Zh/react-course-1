@@ -22,7 +22,7 @@ export default function (): JSX.Element {
       <div className="container mt-5">
         {page === 'cart' && <Cart onNext={moveToOrder} />}
         {page === 'order' && <Order data={data} onChange={handleChange} onNext={moveToResult} onPrev={moveToCart} />}
-        {page === 'result' && <Result />}
+        {page === 'result' && <Result data={data} />}
       </div>
     </SettingsContext.Provider>
   )
