@@ -1,15 +1,14 @@
 import { FormEvent, useState } from 'react'
-import { Input as InputType, InputData, ValidationData, ValidationParams } from './types'
+import { Input as InputType, ValidationData, ValidationParams, InputChange } from './types'
 import { Props } from './props'
-import { defaultInputData, defaultValidationData, inputValidationMap, inputs } from './inputs'
+import { defaultValidationData, inputValidationMap, inputs } from './inputs'
 import Input from '../Input'
 import { validate } from '../../utils'
 import { isFormValid } from './utils'
 
-export default function ({ onNext, onPrev }: Props) {
-  const [data, setData] = useState<InputData>(defaultInputData)
+export default function ({ data, onChange, onNext, onPrev }: Props) {
   const [validationData, setValidationData] = useState<ValidationData>(defaultValidationData)
-  const validateData = (data: Partial<InputData>) => {
+  const validateData = (data: InputChange) => {
     let newValidationData = {}
     Object.entries(data).forEach(([name, value]) => {
       const error = validate(inputValidationMap[name as InputType['name']], value)
@@ -25,8 +24,9 @@ export default function ({ onNext, onPrev }: Props) {
     })
   }
   const handleChange = (name: InputType['name'], value: string) => {
-    setData((prevState) => ({ ...prevState, [name]: value }))
-    validateData({ [name]: value })
+    const change = { [name]: value }
+    onChange(change)
+    validateData(change)
   }
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()

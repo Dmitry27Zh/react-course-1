@@ -10,6 +10,8 @@ export type InputData = {
   [K in Input as K['name']]: K['value']
 }
 
+export type InputChange = Partial<InputData>
+
 export type ValidationParams = {
   status: ValidationStatus
   error: string
