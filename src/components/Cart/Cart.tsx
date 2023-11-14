@@ -3,11 +3,11 @@ import Products from '../Products'
 import { useState } from 'react'
 import Modal from '../Modal'
 
-export default function ({ onNext }: Props) {
+export default function ({ onNext, settings }: Props) {
   const [showConfirm, setShowConfirm] = useState(false)
 
   return (
-    <div>
+    <div style={{ background: settings.theme === 'dark' ? '#ececec' : '' }}>
       <h1>Cart</h1>
       <hr />
       <Products />

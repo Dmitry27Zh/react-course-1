@@ -39,3 +39,11 @@ export type Validation = {
     error: string
   }
 }
+
+export type Lang = 'en' | 'ru'
+export type Theme = 'light' | 'dark'
+
+export type Settings = {
+  lang: Lang
+  theme: Theme
+}
