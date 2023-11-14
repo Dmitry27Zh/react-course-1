@@ -4,6 +4,7 @@ import { Props } from './props'
 import { defaultInputData, defaultValidationData, inputValidationMap, inputs } from './inputs'
 import Input from '../Input'
 import { validate } from '../../utils'
+import { isFormValid } from './utils'
 
 export default function ({ onNext, onPrev }: Props) {
   const [data, setData] = useState<InputData>(defaultInputData)
@@ -30,6 +31,10 @@ export default function ({ onNext, onPrev }: Props) {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     validateData(data)
+
+    if (isFormValid(validationData)) {
+      onNext()
+    }
   }
 
   return (
