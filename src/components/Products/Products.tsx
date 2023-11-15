@@ -3,8 +3,11 @@ import Counter from '../Counter'
 import { GetProductChange } from '../../types'
 import CartContext from '../../contexts/cart'
 import { Cart } from '../../store/Cart'
+import { observer } from 'mobx-react-lite'
 
-export default function () {
+export default observer(Products)
+
+function Products() {
   const { products, changeProduct, removeProduct } = useContext<Cart>(CartContext)
   const total = products.reduce((result, product) => result + product.current * product.price, 0)
 

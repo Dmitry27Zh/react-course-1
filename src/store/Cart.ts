@@ -1,8 +1,13 @@
+import { makeAutoObservable } from 'mobx'
 import { PRODUCTS } from '../data/products'
 import { GetProductChange } from '../types'
 
 export class Cart {
   products = PRODUCTS
+
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   changeProduct = (id: number, getProductChange: GetProductChange) => {
     this.products = this.products.map((product) => {
