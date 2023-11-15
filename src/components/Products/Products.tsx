@@ -1,33 +1,11 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import Counter from '../Counter'
 import { GetProductChange } from '../../types'
-import { PRODUCTS } from '../constants'
-import SettingsContext from '../../contexts/settings'
+import CartContext from '../../contexts/cart'
+import { Cart } from '../../store/Cart'
 
 export default function () {
-  const [products, setProducts] = useState(PRODUCTS)
-  const settings = useContext(SettingsContext)
-
-  const handleProductChange = (id: number, getProductChange: GetProductChange) => {
-    setProducts((oldProducts) => {
-      const newProducts = oldProducts.map((product) => {
-        if (product.id === id) {
-          const productChange = getProductChange(product)
-          product = { ...product, ...productChange }
-        }
-
-        return product
-      })
-
-      return newProducts
-    })
-  }
-  const removeProduct = (id: number) => {
-    setProducts((oldProducts) => {
-      return oldProducts.filter((product) => product.id !== id)
-    })
-  }
-
+  const { products, changeProduct, removeProduct } = useContext<Cart>(CartContext)
   const total = products.reduce((result, product) => result + product.current * product.price, 0)
 
   return (
@@ -54,7 +32,7 @@ export default function () {
                   <Counter
                     max={product.rest}
                     current={product.current}
-                    onChange={(getProductChange: GetProductChange) => handleProductChange(product.id, getProductChange)}
+                    onChange={(getProductChange: GetProductChange) => changeProduct(product.id, getProductChange)}
                   />
                 </td>
                 <td>{product.current * product.price}</td>
