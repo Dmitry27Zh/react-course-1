@@ -6,6 +6,7 @@ import StoreContext from '../contexts/store'
 import { defaultInputData } from './Order/inputs'
 import { InputChange, InputData } from './Order/types'
 import { observer } from 'mobx-react-lite'
+import useStore from '../hooks/useStore'
 
 export default observer(App)
 
@@ -15,7 +16,7 @@ function App(): JSX.Element {
   const moveToOrder = () => setPage('order')
   const moveToResult = () => setPage('result')
   const [data, setData] = useState<InputData>(defaultInputData)
-  const { settings: SettingsContext } = useContext(StoreContext)
+  const { settings: SettingsContext } = useStore()
   const { settings, changeTheme } = SettingsContext
   const handleChange = (change: InputChange) => {
     setData((prevState) => ({ ...prevState, ...change }))

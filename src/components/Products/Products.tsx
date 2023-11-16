@@ -1,13 +1,11 @@
-import { useContext } from 'react'
 import Counter from '../Counter'
 import { GetProductChange } from '../../types'
-import StoreContext from '../../contexts/store'
-import { Store } from '../../store'
 import { observer } from 'mobx-react-lite'
+import useStore from '../../hooks/useStore'
 
 export default observer(Products)
 function Products() {
-  const { cart } = useContext<Store>(StoreContext)
+  const { cart } = useStore()
   const { products, changeProduct, removeProduct, total } = cart
 
   return (
