@@ -9,6 +9,10 @@ export class Cart {
     makeAutoObservable(this)
   }
 
+  get total() {
+    return this.products.reduce((result, product) => result + product.current * product.price, 0)
+  }
+
   changeProduct = (id: number, getProductChange: GetProductChange) => {
     this.products = this.products.map((product) => {
       if (product.id === id) {

@@ -6,10 +6,8 @@ import { Cart } from '../../store/Cart'
 import { observer } from 'mobx-react-lite'
 
 export default observer(Products)
-
 function Products() {
-  const { products, changeProduct, removeProduct } = useContext<Cart>(CartContext)
-  const total = products.reduce((result, product) => result + product.current * product.price, 0)
+  const { products, changeProduct, removeProduct, total } = useContext<Cart>(CartContext)
 
   return (
     <div className="some">
