@@ -5,6 +5,7 @@ import { defaultValidationData, inputValidationMap, inputs } from './inputs'
 import Input from '../Input'
 import { validate } from '../../utils'
 import { isFormValid } from './utils'
+import api from '../../api'
 
 export default function ({ data, onChange, onNext, onPrev }: Props) {
   const [validationData, setValidationData] = useState<ValidationData>(defaultValidationData)
@@ -33,6 +34,7 @@ export default function ({ data, onChange, onNext, onPrev }: Props) {
     validateData(data)
 
     if (isFormValid(validationData)) {
+      api.send(data)
       onNext()
     }
   }
