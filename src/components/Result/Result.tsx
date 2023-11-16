@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import { Props } from './props'
-import CartContext from '../../contexts/cart'
+import StoreContext from '../../contexts/store'
 
 export default function ({ data }: Props) {
-  const { total } = useContext(CartContext)
+  const { cart } = useContext(StoreContext)
+  const { total } = cart
 
   return (
     <div>

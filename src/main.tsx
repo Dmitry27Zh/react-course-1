@@ -1,12 +1,12 @@
 import ReactDom from 'react-dom'
 import App from './components/App'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import SettingsContext from './contexts/settings'
-import settings from './store/Settings'
+import StoreContext from './contexts/store'
+import store from './store'
 
 ReactDom.render(
-  <SettingsContext.Provider value={settings}>
+  <StoreContext.Provider value={store}>
     <App />
-  </SettingsContext.Provider>,
+  </StoreContext.Provider>,
   document.querySelector('.app') as HTMLElement
 )

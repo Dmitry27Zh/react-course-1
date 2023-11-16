@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import { PRODUCTS } from '../data/products'
 import { GetProductChange } from '../types'
 
-export class Cart {
+export default class Cart {
   products = PRODUCTS
 
   constructor() {
@@ -28,5 +28,3 @@ export class Cart {
     this.products = this.products.filter((product) => product.id !== id)
   }
 }
-
-export default new Cart()

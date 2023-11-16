@@ -2,11 +2,9 @@ import { useContext, useState } from 'react'
 import Cart from './Cart'
 import Order from './Order'
 import Result from './Result'
-import SettingsContext from '../contexts/settings'
-import CartContext from '../contexts/cart'
+import StoreContext from '../contexts/store'
 import { defaultInputData } from './Order/inputs'
 import { InputChange, InputData } from './Order/types'
-import cart from '../store/Cart'
 import { observer } from 'mobx-react-lite'
 
 export default observer(App)
@@ -17,13 +15,14 @@ function App(): JSX.Element {
   const moveToOrder = () => setPage('order')
   const moveToResult = () => setPage('result')
   const [data, setData] = useState<InputData>(defaultInputData)
-  const { settings, changeTheme } = useContext(SettingsContext)
+  const { settings: SettingsContext } = useContext(StoreContext)
+  const { settings, changeTheme } = SettingsContext
   const handleChange = (change: InputChange) => {
     setData((prevState) => ({ ...prevState, ...change }))
   }
 
   return (
-    <CartContext.Provider value={cart}>
+    <>
       <div className="container mt-5 mb-5 pd-4">
         {page === 'cart' && <Cart onNext={moveToOrder} settings={settings} />}
         {page === 'order' && <Order data={data} onChange={handleChange} onNext={moveToResult} onPrev={moveToCart} />}
@@ -47,6 +46,6 @@ function App(): JSX.Element {
           </button>
         </div>
       </footer>
-    </CartContext.Provider>
+    </>
   )
 }

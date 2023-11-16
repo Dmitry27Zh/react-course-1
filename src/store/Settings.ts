@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import { SETTINGS } from '../data/settings'
 import { Theme } from '../types'
 
-export class Settings {
+export default class Settings {
   settings = SETTINGS
 
   constructor() {
@@ -13,5 +13,3 @@ export class Settings {
     this.settings = { ...this.settings, theme: newTheme }
   }
 }
-
-export default new Settings()
