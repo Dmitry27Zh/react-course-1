@@ -2,8 +2,11 @@ import { Props } from './props'
 import Products from '../Products'
 import { useState } from 'react'
 import Modal from '../Modal'
+import useStore from '../../hooks/useStore'
 
-export default function ({ onNext, settings }: Props) {
+export default function ({ onNext }: Props) {
+  const { settings: SettingsContext } = useStore()
+  const { settings } = SettingsContext
   const [showConfirm, setShowConfirm] = useState(false)
 
   return (
