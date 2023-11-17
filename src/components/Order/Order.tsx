@@ -34,7 +34,6 @@ export default function ({ data, onChange, onNext, onPrev }: Props) {
     validateData(data)
 
     if (isFormValid(validationData)) {
-      const postData = {}
       api.send(data)
       onNext()
     }
