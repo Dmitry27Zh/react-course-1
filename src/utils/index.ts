@@ -1,4 +1,4 @@
-import { VALID_OBJ_KEYS } from '../components/constants'
+import { VALID_OBJ_KEYS } from '../constants'
 import { Input, ValidObjKeys } from '../types'
 
 export const debounce = (cb: Function, ms: number) => {

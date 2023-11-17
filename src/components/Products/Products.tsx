@@ -9,10 +9,9 @@ function Products() {
   const { products, changeProduct, removeProduct, total } = cart
 
   return (
-    <div className="some">
-      <h1>Products list</h1>
-      {products.length}
-      <table>
+    <div className="mb-2">
+      <p>Positions quantity: {products.length}</p>
+      <table className="w-100 mb-3">
         <tbody>
           <tr>
             <th>#</th>

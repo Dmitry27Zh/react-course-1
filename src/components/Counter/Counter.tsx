@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useMemo, useRef } from 'react'
 import { debounce, clamp } from '../../utils'
-import { COUNTER_TIMEOUT } from '../constants'
+import { COUNTER_TIMEOUT } from '../../constants'
 import styles from './styles.module.css'
 import { Props } from './props'
 
@@ -36,7 +36,7 @@ export default function ({ min = 0, max, current, onChange }: Props): JSX.Elemen
   }
 
   return (
-    <div>
+    <div className="d-flex align-items-center gap-2">
       {current}
       <button className="btn btn-danger" type="button" onClick={decrement}>
         -
