@@ -1,12 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 import { PRODUCTS } from '../data/products'
 import { GetProductChange } from '../types'
+import { Store } from '.'
 
 export default class Cart {
+  store: Store
   products = PRODUCTS
 
-  constructor() {
+  constructor(store: Store) {
     makeAutoObservable(this)
+    this.store = store
   }
 
   get total() {

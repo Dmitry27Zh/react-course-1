@@ -6,8 +6,8 @@ export class Store {
   settings: Settings
 
   constructor() {
-    this.cart = new Cart()
-    this.settings = new Settings()
+    this.cart = new Cart(this)
+    this.settings = new Settings(this)
   }
 }
 
