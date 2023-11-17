@@ -1,3 +1,5 @@
+import { THEMES } from '../data/settings'
+
 export type Product = {
   id: number
   title: string
@@ -47,7 +49,7 @@ export type Validation = {
 }
 
 export type Lang = 'en' | 'ru'
-export type Theme = 'light' | 'dark'
+export type Theme = (typeof THEMES)[number]
 
 export type Settings = {
   lang: Lang
