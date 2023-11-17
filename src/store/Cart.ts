@@ -16,6 +16,10 @@ export default class Cart {
     return this.products.reduce((result, product) => result + product.current * product.price, 0)
   }
 
+  get totalItems() {
+    return this.products.reduce((result, product) => result + product.current, 0)
+  }
+
   changeProduct = (id: number, getProductChange: GetProductChange) => {
     this.products = this.products.map((product) => {
       if (product.id === id) {

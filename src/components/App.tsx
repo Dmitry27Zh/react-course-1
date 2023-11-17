@@ -3,6 +3,7 @@ import Order from '../pages/Order'
 import Result from '../pages/Result'
 import { observer } from 'mobx-react-lite'
 import Footer from './Footer'
+import Header from './Header'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
 export default observer(App)
@@ -10,6 +11,7 @@ export default observer(App)
 function App(): JSX.Element {
   return (
     <BrowserRouter>
+      <Header />
       <div className="container mt-5 mb-5 pd-4">
         <Routes>
           <Route path="/" element={<Cart />} />
