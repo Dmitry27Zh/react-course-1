@@ -1,5 +1,5 @@
-import { ValidationStatus } from '../Input/types'
-import { Validation } from './../../types/index'
+import { ValidationStatus } from '../../components/Input/types'
+import { Validation } from '../../types/index'
 import { inputs } from './inputs'
 
 type Inputs = typeof inputs

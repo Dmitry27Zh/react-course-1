@@ -1,5 +1,5 @@
-import { InputChange } from '../components/Order/types'
-import { defaultInputData } from '../components/Order/inputs'
+import { InputChange } from '../pages/Order/types'
+import { defaultInputData } from '../pages/Order/inputs'
 import { makeAutoObservable } from 'mobx'
 import { Store } from '.'
 import api from '../api'

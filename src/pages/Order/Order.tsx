@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
 import { Input as InputType, ValidationData, ValidationParams, InputChange } from './types'
 import { defaultValidationData, inputValidationMap, inputs } from './inputs'
-import Input from '../Input'
+import Input from '../../components/Input'
 import { validate } from '../../utils'
 import { isFormValid } from './utils'
 import useStore from '../../hooks/useStore'
