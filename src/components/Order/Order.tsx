@@ -1,16 +1,17 @@
 import { FormEvent, useState } from 'react'
 import { Input as InputType, ValidationData, ValidationParams, InputChange } from './types'
-import { Props } from './props'
 import { defaultValidationData, inputValidationMap, inputs } from './inputs'
 import Input from '../Input'
 import { validate } from '../../utils'
 import { isFormValid } from './utils'
 import useStore from '../../hooks/useStore'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function ({ onNext, onPrev }: Props) {
+export default function () {
   const { order } = useStore()
   const { data, update, send } = order
   const [validationData, setValidationData] = useState<ValidationData>(defaultValidationData)
+  const navigate = useNavigate()
   const validateData = (data: InputChange) => {
     let newValidationData = {}
     Object.entries(data).forEach(([name, value]) => {
@@ -37,7 +38,7 @@ export default function ({ onNext, onPrev }: Props) {
 
     if (isFormValid(validationData)) {
       send()
-      onNext()
+      navigate('/result')
     }
   }
 
@@ -57,9 +58,9 @@ export default function ({ onNext, onPrev }: Props) {
           />
         ))}
         <div className="d-flex gap-2">
-          <button className="btn btn-secondary" type="button" onClick={onPrev}>
+          <Link className="btn btn-secondary" to="/">
             Move to cart
-          </button>
+          </Link>
           <button className="btn btn-primary" type="submit">
             Move to result
           </button>
