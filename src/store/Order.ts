@@ -2,6 +2,7 @@ import { InputChange } from '../components/Order/types'
 import { defaultInputData } from '../components/Order/inputs'
 import { makeAutoObservable } from 'mobx'
 import { Store } from '.'
+import api from '../api'
 
 export class Order {
   store: Store
@@ -14,5 +15,10 @@ export class Order {
 
   update = (change: InputChange) => {
     this.data = { ...this.data, ...change }
+  }
+
+  send = () => {
+    const orderData = { ...this.data, products: this.store.cart.products }
+    api.send(orderData)
   }
 }
