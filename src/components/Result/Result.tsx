@@ -1,11 +1,9 @@
-import { useContext } from 'react'
-import { Props } from './props'
-import StoreContext from '../../contexts/store'
 import useStore from '../../hooks/useStore'
 
-export default function ({ data }: Props) {
-  const { cart } = useStore()
+export default function () {
+  const { cart, order } = useStore()
   const { total } = cart
+  const { data } = order
 
   return (
     <div>

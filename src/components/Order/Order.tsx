@@ -6,8 +6,11 @@ import Input from '../Input'
 import { validate } from '../../utils'
 import { isFormValid } from './utils'
 import api from '../../api'
+import useStore from '../../hooks/useStore'
 
-export default function ({ data, onChange, onNext, onPrev }: Props) {
+export default function ({ onNext, onPrev }: Props) {
+  const { order } = useStore()
+  const { data, update } = order
   const [validationData, setValidationData] = useState<ValidationData>(defaultValidationData)
   const validateData = (data: InputChange) => {
     let newValidationData = {}
@@ -26,7 +29,7 @@ export default function ({ data, onChange, onNext, onPrev }: Props) {
   }
   const handleChange = (name: InputType['name'], value: string) => {
     const change = { [name]: value }
-    onChange(change)
+    update(change)
     validateData(change)
   }
   const handleSubmit = (event: FormEvent) => {

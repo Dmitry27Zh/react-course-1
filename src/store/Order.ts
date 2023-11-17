@@ -12,7 +12,7 @@ export class Order {
     this.store = store
   }
 
-  change = (change: InputChange) => {
+  update = (change: InputChange) => {
     this.data = { ...this.data, ...change }
   }
 }

@@ -12,16 +12,15 @@ function App(): JSX.Element {
   const moveToCart = () => setPage('cart')
   const moveToOrder = () => setPage('order')
   const moveToResult = () => setPage('result')
-  const { settings: SettingsContext, order } = useStore()
+  const { settings: SettingsContext } = useStore()
   const { settings, changeTheme } = SettingsContext
-  const { data, change } = order
 
   return (
     <>
       <div className="container mt-5 mb-5 pd-4">
         {page === 'cart' && <Cart onNext={moveToOrder} settings={settings} />}
-        {page === 'order' && <Order data={data} onChange={change} onNext={moveToResult} onPrev={moveToCart} />}
-        {page === 'result' && <Result data={data} />}
+        {page === 'order' && <Order onNext={moveToResult} onPrev={moveToCart} />}
+        {page === 'result' && <Result />}
       </div>
       <footer className="container pt-4 pb-4">
         <div className="d-flex gap-2">
