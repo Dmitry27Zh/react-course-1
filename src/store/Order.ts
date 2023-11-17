@@ -18,7 +18,7 @@ export class Order {
   }
 
   send = () => {
-    const orderData = { ...this.data, products: this.store.cart.products }
+    const orderData = { ...this.data, products: this.store.cart.items }
     api.send(orderData)
   }
 }

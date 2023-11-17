@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useRef } from 'react'
+import { ChangeEvent, useMemo, useRef } from 'react'
 import { debounce, clamp } from '../../utils'
 import { COUNTER_TIMEOUT } from '../../constants'
 import styles from './styles.module.css'

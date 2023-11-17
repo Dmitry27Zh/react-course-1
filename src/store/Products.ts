@@ -10,4 +10,8 @@ export default class Products {
     makeAutoObservable(store)
     this.store = store
   }
+
+  getById(id: number) {
+    return this.products.find((product) => product.id === id)
+  }
 }

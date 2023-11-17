@@ -3,14 +3,20 @@ export type Product = {
   title: string
   price: number
   rest: number
+}
+
+export type CartItem = {
+  id: number
   current: number
 }
 
 export type Products = Product[]
 
-export type ProductChange = Partial<Product>
+export type CartItems = CartItem[]
 
-export type GetProductChange = (oldProduct: Product) => ProductChange
+export type CartItemChange = Partial<CartItem>
+
+export type GetCartItemChange = (oldCartProduct: CartItem) => CartItemChange
 
 export const isNode = (element: any): element is Node => element instanceof Node
 

@@ -1,11 +1,10 @@
 import { makeAutoObservable } from 'mobx'
-import { PRODUCTS } from '../data/products'
-import { GetProductChange } from '../types'
+import { CartItems, GetCartItemChange } from '../types'
 import { Store } from '.'
 
 export default class Cart {
   store: Store
-  products = PRODUCTS
+  items: CartItems = []
 
   constructor(store: Store) {
     makeAutoObservable(this)
@@ -13,25 +12,30 @@ export default class Cart {
   }
 
   get total() {
-    return this.products.reduce((result, product) => result + product.current * product.price, 0)
+    return this.items.reduce((result, item) => {
+      const product = this.store.products.getById(item.id)!
+      const currentTotal = item.current * product.price
+
+      return result + currentTotal
+    }, 0)
   }
 
   get totalItems() {
-    return this.products.reduce((result, product) => result + product.current, 0)
+    return this.items.reduce((result, product) => result + product.current, 0)
   }
 
-  changeProduct = (id: number, getProductChange: GetProductChange) => {
-    this.products = this.products.map((product) => {
-      if (product.id === id) {
-        const productChange = getProductChange(product)
-        product = { ...product, ...productChange }
+  changeProduct = (id: number, getCartItemChange: GetCartItemChange) => {
+    this.items = this.items.map((item) => {
+      if (item.id === id) {
+        const itemChange = getCartItemChange(item)
+        item = { ...item, ...itemChange }
       }
 
-      return product
+      return item
     })
   }
 
   removeProduct = (id: number) => {
-    this.products = this.products.filter((product) => product.id !== id)
+    this.items = this.items.filter((item) => item.id !== id)
   }
 }

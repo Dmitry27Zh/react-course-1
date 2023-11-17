@@ -1,8 +1,8 @@
-import { GetProductChange } from '../../types'
+import { GetCartItemChange } from '../../types'
 
 export type Props = {
   min?: number
   max: number
   current: number
-  onChange: (getProductChange: GetProductChange) => void
+  onChange: (getCartItemChange: GetCartItemChange) => void
 }

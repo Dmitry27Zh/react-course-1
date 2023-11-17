@@ -1,16 +1,17 @@
 import Counter from '../Counter'
-import { GetProductChange } from '../../types'
+import { GetCartItemChange } from '../../types'
 import { observer } from 'mobx-react-lite'
 import useStore from '../../hooks/useStore'
 
-export default observer(Products)
-function Products() {
-  const { cart } = useStore()
-  const { products, changeProduct, removeProduct, total } = cart
+export default observer(CartItems)
+function CartItems() {
+  const { cart, products } = useStore()
+  const { items, changeProduct, removeProduct, total } = cart
+  const { getById } = products
 
   return (
     <div className="mb-2">
-      <p>Positions quantity: {products.length}</p>
+      <p>Positions quantity: {items.length}</p>
       <table className="w-100 mb-3">
         <tbody>
           <tr>
@@ -21,22 +22,24 @@ function Products() {
             <th>Total</th>
             <th>Action</th>
           </tr>
-          {products.map((product, index) => {
+          {items.map((item, index) => {
+            const product = getById(item.id)!
+
             return (
-              <tr key={product.id}>
+              <tr key={item.id}>
                 <td>{index + 1}</td>
                 <td>{product.title}</td>
                 <td>{product.price}</td>
                 <td>
                   <Counter
                     max={product.rest}
-                    current={product.current}
-                    onChange={(getProductChange: GetProductChange) => changeProduct(product.id, getProductChange)}
+                    current={item.current}
+                    onChange={(getCartItemChange: GetCartItemChange) => changeProduct(item.id, getCartItemChange)}
                   />
                 </td>
-                <td>{product.current * product.price}</td>
+                <td>{item.current * product.price}</td>
                 <td>
-                  <button type="button" onClick={() => removeProduct(product.id)}>
+                  <button type="button" onClick={() => removeProduct(item.id)}>
                     X
                   </button>
                 </td>
