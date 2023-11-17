@@ -4,7 +4,7 @@ import { PRODUCTS } from '../data/products'
 
 export default class Products {
   store: Store
-  products = PRODUCTS
+  data = PRODUCTS
 
   constructor(store: Store) {
     makeAutoObservable(store)
@@ -12,6 +12,6 @@ export default class Products {
   }
 
   getById(id: number) {
-    return this.products.find((product) => product.id === id)
+    return this.data.find((product) => product.id === id)
   }
 }
