@@ -1,12 +1,9 @@
-import Cart from '../pages/Cart'
-import Order from '../pages/Order'
-import Result from '../pages/Result'
 import { observer } from 'mobx-react-lite'
+import { BrowserRouter } from 'react-router-dom'
 import Footer from './Footer'
 import Header from './Header'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import useStore from '../hooks/useStore'
-import Catalog from '../pages/Catalog/Catalog'
+import MainRoutes from '../routes/MainRoutes'
 
 export default observer(App)
 
@@ -23,12 +20,7 @@ function App(): JSX.Element {
           <div className="d-flex gap-5 p-4">
             <aside>Aside</aside>
             <div className="flex-grow-1">
-              <Routes>
-                <Route path="/" element={<Catalog />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/order" element={<Order />} />
-                <Route path="/result" element={<Result />} />
-              </Routes>
+              <MainRoutes />
             </div>
           </div>
           <hr />
