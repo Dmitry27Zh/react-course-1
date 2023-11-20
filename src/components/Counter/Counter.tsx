@@ -4,7 +4,7 @@ import { COUNTER_TIMEOUT } from '../../constants'
 import styles from './styles.module.css'
 import { Props } from './props'
 
-export default function ({ min = 0, max, current, onChange }: Props): JSX.Element | never {
+export default function ({ min = 1, max, current, onChange }: Props): JSX.Element | never {
   if (min > max) {
     throw new Error('Min should be less than max')
   }

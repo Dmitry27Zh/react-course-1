@@ -1,4 +1,4 @@
-import Products from '../../components/Products'
+import CartItems from '../../components/CartItems'
 import { useState } from 'react'
 import Modal from '../../components/Modal'
 import { observer } from 'mobx-react-lite'
@@ -15,7 +15,7 @@ export function Cart() {
   return (
     <div>
       <h1>Cart</h1>
-      <Products />
+      <CartItems />
       {!cart.isEmpty && (
         <button className="button button-primary" type="button" onClick={() => setShowConfirm(true)}>
           Move to order
