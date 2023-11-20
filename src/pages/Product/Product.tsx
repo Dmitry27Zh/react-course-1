@@ -11,7 +11,13 @@ export function Product() {
   const product = getProduct(products, id)
 
   if (product) {
-    return <div>Product</div>
+    return (
+      <div>
+        <h3>{product.title}</h3>
+        <p>Available: {product.rest}</p>
+        <b>${product.price}</b>
+      </div>
+    )
   } else {
     return <Navigate to="/not-found"></Navigate>
   }
