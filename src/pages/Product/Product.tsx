@@ -29,6 +29,6 @@ export function Product() {
       </div>
     )
   } else {
-    return <Navigate to="/not-found"></Navigate>
+    return <Navigate to="/not-found" replace></Navigate>
   }
 }
