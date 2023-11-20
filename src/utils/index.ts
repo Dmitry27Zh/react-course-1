@@ -1,3 +1,4 @@
+import { ID_REG } from './../constants'
 import { VALID_OBJ_KEYS } from '../constants'
 import { Input, ValidObjKeys } from '../types'
 
@@ -53,4 +54,8 @@ export const validate = (validation: Input['validation'], value: string): string
   }
 
   return ''
+}
+
+export const checkId = (id: string) => {
+  return ID_REG.test(id)
 }

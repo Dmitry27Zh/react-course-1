@@ -3,6 +3,7 @@ import Cart from '../pages/Cart'
 import Order from '../pages/Order'
 import Result from '../pages/Result'
 import Catalog from '../pages/Catalog'
+import Product from '../pages/Product'
 import Error from '../pages/Error'
 
 export default function () {
@@ -12,6 +13,7 @@ export default function () {
       <Route path="/cart" element={<Cart />} />
       <Route path="/order" element={<Order />} />
       <Route path="/result" element={<Result />} />
+      <Route path="/products/:id" element={<Product />} />
       <Route path="*" element={<Error />} />
     </Routes>
   )
