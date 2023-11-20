@@ -1,6 +1,6 @@
-import { Inputs } from '../../types'
-import { makeMap } from '../../utils'
-import { ValidationData, ValidationParams } from './types'
+import { Inputs } from '../types'
+import { makeMap } from '../utils'
+import { ValidationData, ValidationParams } from '../pages/Order/types'
 
 export const inputs = [
   {

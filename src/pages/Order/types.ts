@@ -1,6 +1,6 @@
 import { ValidationStatus } from '../../components/Input/types'
 import { Validation } from '../../types/index'
-import { inputs } from './inputs'
+import { inputs } from '../../data/inputs'
 
 type Inputs = typeof inputs
 

@@ -1,45 +1,32 @@
-import { FormEvent, useState } from 'react'
-import { Input as InputType, ValidationData, ValidationParams, InputChange } from './types'
-import { defaultValidationData, inputValidationMap, inputs } from './inputs'
+import { FormEvent } from 'react'
+import { Input as InputType } from './types'
+import { inputs } from '../../data/inputs'
 import Input from '../../components/Input'
-import { validate } from '../../utils'
-import { isFormValid } from './utils'
 import useStore from '../../hooks/useStore'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
-export default function () {
-  const { order } = useStore()
-  const { data, update, send } = order
-  const [validationData, setValidationData] = useState<ValidationData>(defaultValidationData)
+export default observer(Order)
+
+export function Order() {
+  const { order, cart } = useStore()
+  const { data, validationData, update, send, checkValidity } = order
   const navigate = useNavigate()
-  const validateData = (data: InputChange) => {
-    let newValidationData = {}
-    Object.entries(data).forEach(([name, value]) => {
-      const error = validate(inputValidationMap[name as InputType['name']], value)
-      const validationParams: ValidationParams = {
-        status: error ? 'invalid' : 'valid',
-        error,
-      }
-      newValidationData = { ...newValidationData, [name]: validationParams }
-    })
-
-    setValidationData((prevState) => {
-      return { ...prevState, ...newValidationData }
-    })
-  }
   const handleChange = (name: InputType['name'], value: string) => {
     const change = { [name]: value }
     update(change)
-    validateData(change)
   }
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    validateData(data)
 
-    if (isFormValid(validationData)) {
+    if (checkValidity()) {
       send()
       navigate('/result')
     }
+  }
+
+  if (cart.isEmpty) {
+    return <Navigate to="/not-found" replace></Navigate>
   }
 
   return (
@@ -58,7 +45,7 @@ export default function () {
           />
         ))}
         <div className="d-flex gap-2">
-          <Link className="btn btn-secondary" to="/">
+          <Link className="btn btn-secondary" to="/cart">
             Move to cart
           </Link>
           <button className="btn btn-primary" type="submit">

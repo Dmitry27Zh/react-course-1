@@ -1,6 +1,7 @@
 import { ID_REG } from './../constants'
 import { VALID_OBJ_KEYS } from '../constants'
 import { Input, ValidObjKeys } from '../types'
+import { ValidationData } from '../pages/Order/types'
 
 export const debounce = (cb: Function, ms: number) => {
   let timerId: number | null = null
@@ -58,4 +59,8 @@ export const validate = (validation: Input['validation'], value: string): string
 
 export const checkId = (id: string) => {
   return ID_REG.test(id)
+}
+
+export const isFormValid = (validationData: ValidationData) => {
+  return Object.values(validationData).every((value) => value.status === 'valid')
 }
