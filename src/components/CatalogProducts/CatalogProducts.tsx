@@ -8,7 +8,7 @@ export default function () {
   return (
     <div className="d-flex flex-wrap gap-4">
       {data.map((product) => (
-        <CatalogProduct price={product.price} title={product.title} key={product.id} />
+        <CatalogProduct id={product.id} price={product.price} title={product.title} key={product.id} />
       ))}
     </div>
   )

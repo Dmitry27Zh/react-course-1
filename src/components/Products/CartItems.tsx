@@ -6,7 +6,7 @@ import useStore from '../../hooks/useStore'
 export default observer(CartItems)
 function CartItems() {
   const { cart, products } = useStore()
-  const { items, changeProduct, removeProduct, total } = cart
+  const { items, changeItem, removeItem, total } = cart
   const { getById } = products
 
   return (
@@ -34,12 +34,12 @@ function CartItems() {
                   <Counter
                     max={product.rest}
                     current={item.current}
-                    onChange={(getCartItemChange: GetCartItemChange) => changeProduct(item.id, getCartItemChange)}
+                    onChange={(getCartItemChange: GetCartItemChange) => changeItem(item.id, getCartItemChange)}
                   />
                 </td>
                 <td>{item.current * product.price}</td>
                 <td>
-                  <button type="button" onClick={() => removeProduct(item.id)}>
+                  <button type="button" onClick={() => removeItem(item.id)}>
                     X
                   </button>
                 </td>

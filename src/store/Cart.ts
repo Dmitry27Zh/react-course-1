@@ -24,7 +24,7 @@ export default class Cart {
     return this.items.reduce((result, product) => result + product.current, 0)
   }
 
-  changeProduct = (id: number, getCartItemChange: GetCartItemChange) => {
+  changeItem = (id: number, getCartItemChange: GetCartItemChange) => {
     this.items = this.items.map((item) => {
       if (item.id === id) {
         const itemChange = getCartItemChange(item)
@@ -39,7 +39,7 @@ export default class Cart {
     return this.items.length === 0
   }
 
-  removeProduct = (id: number) => {
+  removeItem = (id: number) => {
     this.items = this.items.filter((item) => item.id !== id)
   }
 }
