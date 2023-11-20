@@ -5,6 +5,7 @@ import Header from '../Header'
 import useStore from '../../hooks/useStore'
 import MainRoutes from '../../routes/MainRoutes'
 import { updateTheme } from './utils'
+import Aside from '../Aside'
 
 export default observer(App)
 
@@ -20,7 +21,7 @@ function App(): JSX.Element {
         <main className="d-flex flex-column flex-grow-1">
           <hr />
           <div className="d-flex flex-grow-1 gap-5 p-4">
-            <aside>Aside</aside>
+            <Aside />
             <div className="flex-grow-1">
               <MainRoutes />
             </div>
