@@ -1,3 +1,9 @@
+import Navigation from '../Navigation'
+
 export default function () {
-  return <aside>Aside</aside>
+  return (
+    <aside>
+      <Navigation />
+    </aside>
+  )
 }
