@@ -35,6 +35,10 @@ export default class Cart {
     })
   }
 
+  get isEmpty() {
+    return this.items.length === 0
+  }
+
   removeProduct = (id: number) => {
     this.items = this.items.filter((item) => item.id !== id)
   }
