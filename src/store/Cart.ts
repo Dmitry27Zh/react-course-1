@@ -47,6 +47,12 @@ export default class Cart {
     return this.items.some((item) => item.id === id)
   }
 
+  addItem = (id: number) => {
+    if (!this.hasItem(id)) {
+      this.items.push({ id, current: 1 })
+    }
+  }
+
   removeItem = (id: number) => {
     this.items = this.items.filter((item) => item.id !== id)
   }

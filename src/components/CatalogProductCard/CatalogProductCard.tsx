@@ -1,18 +1,21 @@
+import { observer } from 'mobx-react-lite'
 import useStore from '../../hooks/useStore'
 import { Props } from './props'
 
-export default function ({ id, price, title }: Props) {
+export default observer(CatalogProductCard)
+
+export function CatalogProductCard({ id, price, title }: Props) {
   const { cart } = useStore()
   const renderButton = () => {
     if (cart.hasItem(id)) {
       return (
-        <button className="btn btn-danger" type="button">
+        <button className="btn btn-danger" type="button" onClick={() => cart.removeItem(id)}>
           Remove
         </button>
       )
     } else {
       return (
-        <button className="btn btn-success" type="button">
+        <button className="btn btn-success" type="button" onClick={() => cart.addItem(id)}>
           Add
         </button>
       )

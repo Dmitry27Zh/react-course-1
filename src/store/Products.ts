@@ -11,7 +11,7 @@ export default class Products {
     this.store = store
   }
 
-  getById(id: number) {
+  getById = (id: number) => {
     return this.data.find((product) => product.id === id)
   }
 }
