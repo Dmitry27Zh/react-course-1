@@ -1,5 +1,5 @@
 import useStore from '../../hooks/useStore'
-import CatalogProduct from '../CatalogProduct'
+import CatalogProductCard from '../CatalogProductCard'
 
 export default function () {
   const { products } = useStore()
@@ -8,7 +8,7 @@ export default function () {
   return (
     <div className="d-flex flex-wrap gap-4">
       {data.map((product) => (
-        <CatalogProduct id={product.id} price={product.price} title={product.title} key={product.id} />
+        <CatalogProductCard id={product.id} price={product.price} title={product.title} key={product.id} />
       ))}
     </div>
   )

@@ -39,6 +39,14 @@ export default class Cart {
     return this.items.length === 0
   }
 
+  getItem = (id: number) => {
+    return this.items.find((item) => item.id === id)
+  }
+
+  hasItem = (id: number) => {
+    return this.items.some((item) => item.id === id)
+  }
+
   removeItem = (id: number) => {
     this.items = this.items.filter((item) => item.id !== id)
   }
